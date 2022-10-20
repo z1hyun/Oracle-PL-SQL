@@ -1,0 +1,21 @@
+
+/*
+ * 현재일자를 기준으로 사원 테이블의 입사일자(hire_date)를 참조해서 근속년수가 10년 이상인 사원을 다음과 같은
+ * 형태의 결과를 출력하도록 쿼리를 작성해보자(근속년수가 높은 사원 순서대로 결과가 나오도록하자)
+ */
+
+--내가 쓴 쿼리
+SELECT EMPLOYEE_ID  , EMP_NAME  , HIRE_DATE , YEARS
+FROM(
+SELECT  EMPLOYEE_ID , EMP_NAME ,  HIRE_DATE , TO_CHAR(SYSDATE, 'YYYY') - TO_CHAR(HIRE_DATE , 'YYYY') AS YEARS
+FROM EMPLOYEES e 
+) WHERE YEARS >= 10
+ORDER BY YEARS DESC;
+
+--정답 쿼리
+
+SELECT employee_id, emp_name, HIRE_DATE, 
+       ROUND((sysdate - hire_date) / 365)
+  FROM employees
+ WHERE ROUND((sysdate - hire_date) / 365) >= 10
+ ORDER BY 3;
