@@ -1,0 +1,12 @@
+
+/*
+ * 사원 테이블에는 phone_number라는 컬럼에 사원의 전화번호가 '###.###.####' 형태로 저장되어있다.
+ * 여기서 처음 세자리 숫자 대신 서울 지역 번호인 '(02)'를 붙여 전화번호를 출력하도록 쿼리를 작성해보자.
+ */
+
+--내가 쓴 쿼리
+SELECT '(02)'||SUBSTR(PHONE_NUMBER ,5) FROM EMPLOYEES e;
+
+
+--정답 쿼리
+SELECT employee_id, LPAD(SUBSTR(phone_number, 5), 12, '(02)')FROM employees;
