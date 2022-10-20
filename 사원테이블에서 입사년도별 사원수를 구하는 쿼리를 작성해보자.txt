@@ -1,0 +1,19 @@
+
+SELECT * FROM EMPLOYEES e ;
+
+--사원테이블에서 입사년도별 사원 수를 구하는 쿼리를 작성해보자
+
+--내가 쓴 쿼리 
+SELECT  HIRE_DATE , COUNT(*)
+FROM(
+SELECT TO_CHAR(HIRE_DATE,'YYYY')HIRE_DATE 
+FROM EMPLOYEES e
+)GROUP BY HIRE_DATE ;
+
+
+--책 깃허브 쿼리 
+SELECT TO_CHAR(hire_date, 'YYYY') AS hire_year,
+       COUNT(*)
+  FROM employees
+GROUP BY TO_CHAR(hire_date, 'YYYY')
+ORDER BY TO_CHAR(hire_date, 'YYYY');
